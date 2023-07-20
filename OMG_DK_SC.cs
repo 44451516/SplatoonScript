@@ -17,10 +17,21 @@ using Splatoon.Utils;
 
 namespace SplatoonScriptsOfficial.Duties.Endwalker
 {
+    /*
+     * 本脚本实现
+     * P1 自动无敌、ST时候开启盾姿
+     * P1->P2 自动铁壁、血乱、嗜血
+     * P2 接线自动铁壁、暗影墙、黑盾
+     * P5_1死刑_自动铁壁、暗影墙
+     * P5_4死刑_自动铁壁、暗影墙
+     * P5_3运延迟爆发
+     * P6 自动减伤
+     * P6 第一次魔数自动LB、点掉BUFF
+     */
     internal class OMG_DK_SC : SplatoonScript
     {
         public override HashSet<uint> ValidTerritories => new() { 1122 };
-        public override Metadata? Metadata => new(33, "OMG黑骑自动化脚本");
+        public override Metadata? Metadata => new(34, "OMG黑骑自动化脚本");
 
 
 
@@ -364,8 +375,8 @@ namespace SplatoonScriptsOfficial.Duties.Endwalker
             {
                 if (Environment.TickCount64 >= p1_无敌_Time)
                 {
+                    useAction(无敌_actionName, 10);
                     disabledScombo();
-
                     p1_无敌_Time = long.MaxValue;
                 }
 
