@@ -1,0 +1,558 @@
+> [!Caution]
+>
+> 停下，冒险者！
+>
+> 如果你在找 MEOW 或 RINON 站位（无南侧调整），请打开下面链接并安装 Forsaken Fixed Partners 脚本：
+>
+> [Meow3 / Kroxy/Rinon 脚本在这里](https://github.com/PunishXIV/Splatoon/blob/main/Presets/Dawntrail/Raids/Ultimate%20-%20Dancing%20Mad/Phase%202.md#script-beta-p2-forsaken-fixed-partners)
+>
+> 另外请安装 [Forsaken Visualizer](https://github.com/PunishXIV/Splatoon/blob/main/Presets/Dawntrail/Raids/Ultimate%20-%20Dancing%20Mad/Phase%202.md#script-forsaken-visualizer) 脚本，并导入它的“Declutter”配置以提高精度。
+>
+> 否则请继续向下查看其他打法。
+
+## 通用读条
+
+推荐导入。
+```
+~Lv2~{"Name":"Dmad P2 分身诱导","Group":"绝妖星乱舞 P2","ZoneLockH":[1363],"ElementsL":[{"Name":"凯夫卡读条","type":1,"radius":5.5,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorNPCNameID":7131,"refActorRequireCast":true,"refActorCastId":[47826,47827],"refActorUseCastTime":true,"refActorCastTimeMin":3.0,"refActorCastTimeMax":8.0,"refActorComparisonType":6,"Conditional":true,"Nodraw":true},{"Name":"AOE 1","type":1,"radius":5.0,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorModelID":4967,"TargetAlteration":1100,"refActorComparisonType":1,"onlyVisible":true,"LimitDistance":true,"DistanceSourceX":100.0,"DistanceSourceY":100.0,"DistanceMax":9.0,"IsDead":false},{"Name":"AOE 2","type":1,"radius":5.0,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorModelID":4967,"TargetAlteration":1101,"refActorComparisonType":1,"onlyVisible":true,"LimitDistance":true,"DistanceSourceX":100.0,"DistanceSourceY":100.0,"DistanceMax":9.0,"IsDead":false},{"Name":"AOE 3","type":1,"radius":5.0,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorModelID":4967,"TargetAlteration":1102,"refActorComparisonType":1,"onlyVisible":true,"LimitDistance":true,"DistanceSourceX":100.0,"DistanceSourceY":100.0,"DistanceMax":9.0,"IsDead":false},{"Name":"AOE 4","type":1,"radius":5.0,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorModelID":4967,"TargetAlteration":1103,"refActorComparisonType":1,"onlyVisible":true,"LimitDistance":true,"DistanceSourceX":100.0,"DistanceSourceY":100.0,"DistanceMax":9.0}],"ForcedProjectorActions":[47836,47837]}
+~Lv2~{"Name":"Dmad P2 破坏之翼","Group":"绝妖星乱舞 P2","ZoneLockH":[1363],"ElementsL":[{"Name":"左侧","type":4,"radius":20.0,"coneAngleMin":180,"coneAngleMax":360,"refActorDataID":19506,"refActorRequireCast":true,"refActorCastId":[47821],"refActorComparisonType":3,"includeRotation":true},{"Name":"右侧","type":4,"radius":20.0,"coneAngleMax":180,"refActorDataID":19506,"refActorRequireCast":true,"refActorCastId":[47822],"refActorComparisonType":3,"includeRotation":true}]}
+```
+
+## [脚本] Forsaken 可视化
+
+此脚本只显示机制顺序、你（或其他玩家）的标记，并可视化塔内玩家发出的攻击。可以与其他脚本配合使用。它不会自动解机制。
+
+> [!Warning]
+>
+> 必须配置此脚本。
+
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken.cs
+```
+
+### Forsaken Visualizer 的简化显示配置
+
+此配置只提供视觉指示，并将显示调得比默认值更简洁。推荐将 Forsaken Visualizer 脚本与下方任一脚本配合使用，方便随时微调。
+
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken","ConfigurationName":"简化显示","Configuration":"G+0BIBwJ2RnmRarDyeJPqaPwbm0zJEM/Ln8QdOuLwmB0+fhhIAuvlom1+3u/81/PEwspxO8HpKhAhqO7o/FoArNt+Uj6VBTU9EJk+4zD+64QQE7QuVpjsLM8NymLzvsbX3FvrThENhmRR3n9n/I9c1yWHEwURYTSDDVNziK6SWB0Ne+EWjaQZcsTP9IpRZHAu7J65oe6gP+uVGAzxxdg8JWdU3lAvAV60XCzWol6IPTEHrxRdIrkxaRVFc2MjRQXao99RqjJ0qsYPs3bR53qmDY=","Overrides":"G0coYJwFdiwPKAwfVYvD1HUNsvv7rkT6dDqVv95JKe0YF7dqx2yb9h82dc3P0IYN+UMxDinD/9rvN78RScTk2n/oDJF39ux+RDQyNPM3ey+iFhKEEMgRQiIkLYFlOUOKzJ8NJumWctq9zYn1yIa6g489wXOq484x/uAwqJiA1z6ghqVRepE1ucv+i0LYnhHjQ0qIsz2PwJYRSZeaUxyavDWlFB5OFHon0sCUS+QNVW52jwm8NJPPpKGRtZe4Mv+B7h+grbq+KI9DLj9PD3RyrCtQWTnTKbapUHHbL2qPqzghsE0ilJqM4MxA00eYmKvNBp0jXBtDN8m5upyBxKEGw5U3z4AIuVOmjTWXSd4FMNeQegWJV6K8EzQOQ8wImjZVOCFCtUtCHNPu3NlltUDSp9QA20XClLz7YOGCvqfkzva2Ehud9lYw+zEukNhF58w6liHtMjL+vMgL4ao7fD4v27PK2Fcv8QPGFRQk+XKehnBVqWCXU5zkes72CBpF4Uo7Ej4dmHljWY2tdj8+bcKnBaWCnQFeUEh3Ub+4Lfw6/RcvPVvlEidcMfoyCxgjFQ6OdUBjF3QTni9w4G5gAIYYtWbPuUCct+hBJjqU4hgKQacThWZ8l1ExuMAZi4kxbnJOlSSzTrJOj38OVTaQTFKiRlJul+84u0h20ZM6hyrbSEYURM6HtAAwdNOOWHk5cNU45W7E5SwKoZJZIJmhHLFkmDhSXXCwEHB4WtZk03UW5eDJDrosB/LwKrsqAvuZsbxqooD260WWp5mbtZbWsKyWx6WGIN/iG6mfsDwfhQqv0Ffl9c0EDAW09FLwhHhxHOD4xMGBYT0wz1/fkPNk8VGctODFObmSKMCCJy4CysVJcW6DJykx+v9NmV/bCIGrRDFyhNGljdnb+WMuYWvu1EGcAGg72DmzZoulCy56W/Ze+5QFoeUyamgROZd8nXSnNCSOE6uYbZz+4W+Zj6foX2hGb4iyUTFD7TAabu3XYRTXkZUVYR/0drkDx0xl21LJPn2mChz9MVSZfwINAIhdnjG0j8QKQWdRBRgowECCgfd0rHWAoCYghHh9vo1zySsD7Ui0uT7Watqjb7p4eI7zv+1RHmywL1PX+O17l2u8wMajtFpfZrDaqmB/dQ=="}
+```
+
+## **[脚本] [Beta]** P2 Forsaken beta guide
+
+仅对自己显示的 P2 Forsaken / Missing 辅助。它读取实时 Missing Debuff，通过地图特效追踪塔组，判断当前第一/第二处理组，并只引导本地玩家到配置好的相对塔位置。
+
+当前模型：
+- 塔位置通过地图特效推断。
+- 基础站位是相对塔的。配置的角度/距离表决定每个职责相对当前塔组的站位。
+- 对于基于配对的打法，优先使用 Pair 1 到 Pair 4 的显式设置。如果四组配对都匹配当前小队，包含一个头部分摊玩家的配对成为第一组，非头部分摊配对成为第二组。
+- 如果没有配置显式配对，脚本会使用优先级配对：1+3、2+4、5+7、6+8。
+- 设置界面包含 Pair validation / ペア設定チェック，可提示配对不完整、玩家重复、队员缺失或当前组别无法分配等问题。
+- 下方职责名称使用 Splatoon 职责站位：ST 写作 OT，D1/D2/D3/D4 写作 M1/M2/R1/R2。
+
+> [!Note]
+>
+> 如需 Yan Flash 南侧调整，请启用 `Adjust same marker by previous tower distance`。
+
+本仓库中的脚本文件：
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_beta.cs
+```
+
+## 当前推荐配置
+
+### KT Yan-style 显式配对 - MT-H1/OT-H2/M1-R1/M2-R2 - AAABBBBA
+
+配对设置：
+- 第 1 组： MT-H1
+- 第 2 组： OT-H2
+- 第 3 组： M1-R1
+- 第 4 组： M2-R2
+
+波次表：AAABBBBA，表示 1238 处理第 1、2、3、8 波；4567 处理第 4、5、6、7 波。
+
+全局优先级：H1 H2 MT OT M1 M2 R1 R2。
+
+配对分配：整组配对。包含一个头部分摊玩家的配对处理 1/2/3/8 波；不含头部分摊玩家的配对处理 4/5/6/7 波。
+
+初始头部分摊排序：按职责侧。使用上述优先级时，第一轮头部分摊塔固定为 TH 在左塔、DPS 在右塔。
+
+来源/参考：
+- [Yan Flash / 絶妖星乱舞](https://yan-flash.com/ultimate/yosei-ranbu)
+- [KT / ミッシング検討資料](https://docs.google.com/presentation/d/1RDLS_RW2VSgqPp8KbHKgWV6bMsIFq1tTnhQjYZ1Fx1E/edit?slide=id.g3e847f115ae_3_5#slide=id.g3e847f115ae_3_5)
+- [Sora Haruno / KT source tweet](https://x.com/soraharuno_XIV/status/2062576334115873269)
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"KT Yan 式显式配对 - MT-H1/OT-H2/M1-R1/M2-R2 - AAABBBBA","Configuration":"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","Overrides":null}
+```
+
+### P2-L盗火混合优化2222分组
+
+配对设置：
+- 第 1 组： MT-H1
+- 第 2 组： OT-H2
+- 第 3 组： M1-R1
+- 第 4 组： M2-R2
+
+波次表：AAABBBBA，表示 1238 处理第 1、2、3、8 波；4567 处理第 4、5、6、7 波。
+
+全局优先级：H1 H2 MT OT M1 M2 R1 R2。
+
+配对分配：整组配对。包含一个头部分摊玩家的配对处理 1/2/3/8 波；不含头部分摊玩家的配对处理 4/5/6/7 波。
+
+初始头部分摊排序：按搭档 Debuff。参考塔始终为圆圈，配对塔始终为扇形。
+
+来源/参考：
+- [10分钟教会你打绝凯夫卡P2--L盗火混合优化2222分组——塔塔露一看就会](https://www.bilibili.com/video/BV1ch796YEae)
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"P2-L盗火混合优化2222分组 MT-H1/ST-H2/D1-D3/D2-D4 - AAABBBBA","Configuration":"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","Overrides":null}
+```
+
+### 融合优化 2222预分组 闲人固定
+
+配对设置：
+- 第 1 组： MT-H1
+- 第 2 组： OT-H2
+- 第 3 组： M1-R1
+- 第 4 组： M2-R2
+
+波次表：AAABBBBA，表示 1238 处理第 1、2、3、8 波；4567 处理第 4、5、6、7 波。
+
+全局优先级：H1 H2 MT OT M1 M2 R1 R2。
+
+配对分配：整组配对。包含一个头部分摊玩家的配对处理 1/2/3/8 波；不含头部分摊玩家的配对处理 4/5/6/7 波。
+
+初始头部分摊排序：按搭档 Debuff。参考塔始终为圆圈，配对塔始终为扇形。
+
+辅助组 TH 始终去配对塔，DPS 始终去参考塔。
+
+来源/参考：
+- [融合优化 2222预分组 闲人固定](https://docs.qq.com/doc/DTFBPRkJ0bVFoeGVV?nlc=1)
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"P2-L盗火混合优化2222分组闲固 MT-H1/ST-H2/D1-D3/D2-D4 - AAABBBBA","Configuration":"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","Overrides":null}
+```
+
+### KT Reen-style 显式配对 - MT-OT/H1-H2/M1-M2/R1-R2 - AAABBBBA
+
+配对设置：
+- 第 1 组： MT-OT
+- 第 2 组： H1-H2
+- 第 3 组： M1-M2
+- 第 4 组： R1-R2
+
+波次表：AAABBBBA，表示 1238 处理第 1、2、3、8 波；4567 处理第 4、5、6、7 波。
+
+全局优先级：MT OT H1 H2 M1 M2 R1 R2。
+
+来源/参考：
+- [Reen Kelly / KT source tweet](https://x.com/reen_kelly/status/2062438946399994034?s=46&t=23SvjfY0SHlA9udFwVXHxg)
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"KT Reen 式显式配对 - MT-OT/H1-H2/M1-M2/R1-R2 - AAABBBBA","Configuration":"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","Overrides":null}
+```
+
+### Meow LZW / EU Pairstrat 显式配对 - H1-MT/OT-H2/R2-M2/M1-R1 - AAABBBBA
+
+配对设置：
+- 第 1 组： H1-MT
+- 第 2 组： OT-H2
+- 第 3 组： R2-M2
+- 第 4 组： M1-R1
+
+波次表：AAABBBBA，表示 1238 处理第 1、2、3、8 波；4567 处理第 4、5、6、7 波。
+
+全局优先级：H1 H2 MT OT M1 M2 R1 R2。这会让辅助排序保持按职责分配，以对应 RaidPlan 注释 `Helpers to HTMR fixed positions`。
+
+来源/参考：
+- [Meow³'s Braindead P2 / Pairstrat Static + Uptime](https://raidplan.io/plan/lZWqxfxvyhF9sp3Z)
+
+> [!Note]
+>
+> 此预设使用显式 RaidPlan 配对和整组配对分配。包含第一塔分摊的配对先处理，另外两组配对先帮忙。第 1 波奇数组扇形站位保留在左塔，分摊辅助位从旧默认的最左侧移向 RaidPlan 中显示的 H1 帮忙位。
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"Meow LZW / EU Pairstrat 显式配对 - H1-MT/OT-H2/R2-M2/M1-R1 - AAABBBBA","Configuration":"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","Overrides":null}
+```
+
+### Kroxy-Rinon / 1238-4567 pair
+波次表: A 组 处理第 1, 2, 3, 8; B 组 处理第 4, 5, 6, 7.
+
+A/B 顺序：AAABBBBA。
+
+分组模式：优先级序号配对 1238/4567。优先级槽位 1+3、2+4、5+7、6+8 配对。包含一个头部分摊标记的配对成为 A 组；非分摊配对成为 B 组。
+
+初始头部分摊排序：按优先级顺序。这会让 Kroxy-Rinon 中辅助侧分摊在左、DPS 侧分摊在右，而不是按搭档 Debuff 排序两个分摊玩家。
+
+优先级：H2 H1 OT MT M1 M2 R1 R2。
+
+来源：
+- [Kroxy-Rinon 3/4/1 (Center/N Stacks)](https://raidplan.io/plan/UATE__aDcw1-bgVv)
+
+此预设遵循 Rinon 整组配对模型：A 组由辅助分摊玩家及其小队搭档、DPS 分摊玩家及其小队搭档组成。优先级顺序形成的小队搭档配对为 H2+OT、H1+MT、M1+R1、M2+R2。
+
+> [!Warning]
+>
+> 此导入包含从 `message.txt` 中 Rinon 脚本参考复制来的 Kroxy-Rinon 坐标。基于中心的帮忙/诱导站位已转换为通用脚本的参考塔角度基准，偶数波 `H0/C2/F2` 表也在回放/UI 检查后对齐到 Meow LZW 放置方式。仍需回放或实战验证后才能视为完全可靠。
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"Kroxy-Rinon / 1238-4567 搭档","Configuration":"Gzo1IioY6wCLAtuGZQ/jivtgGpSapHXQ991IA+vVHSWaYWA4zf7dxTmFtktHTD9f2lbV7iwvFv7EoBOR+iTgWSZBtOgq3JwjlR3Rob0n6aP0mFKjoePH7/dNPCLWaFEfoW3q/50zd2ZVE9bYjZhcRUSTJdqPmJdIpCRNkVQIOQHPf9P2Qi1Wp02yu1SHx8jMhkuVGI2wvHkZSisKjm/C26HV/+UuRz8+5fqpvA8Lw21ors/OL1IqVM72gUDTEjJx40G+PBREh74t/iMnMAZHPDjyJT8jghXBUQ//orzEOOLd/Cj+BAPfhQs8LsuyvP73yrykfBMue5wzUvP5VpFkc0eUhKKkUxAxIIdhGYZFo5Uv2vac3iQwNeHFZthK0UciMQANvSk3dvOrh0uxLZPgSt0IpE0tFoPGIuRKeOX9dNpE57093yVilN7TlflYnqTyZ1wkIYR3A0tKAEZVCv5eLngMjoNu8B20PHBjwgri/8VIUiBNWRqf+h9j2nwRM7eNq3SVyasr0CVnR+QQdiKbFQKvb2kswtH+GHAKNIKe4MwCybtE1RvLVbXrCddAZAtdOVVYAIY+b3qW1ktrU3KiEKwicRlMBUqe4xU4enMEeRpSkUFIakgdYCVB0WVobFmBWzkCERthP2GWVh0ni6VVqDeuAqCU4tyN33/8j9olEHhOUuD/X/vLaNOcI97fpf7vdEmdSIsbjppxVdJbIb3ptBsC0DdYoHwdstPy+p+ZYVi7fqSz8sNZlgfr4bAO038S1KI1+Pm8klF2A3F190GUhM9RegR5Jmoc2sfCaot4zHD/XRMn6UOitkkX6ACblM5PZLik8BRPo8/XQ1GB3SXvizN89NGXO0tfrU56V50g2nvEuod+dAXcxJHixxkUbay+3MdNsC8WWiokXxefrz7g6dlw0Jcu/5AXn+KRIPtws50ThigglHPxsq55HigzNYKfVisa7VOCIAZC+V8hVUB3gi85edBIR1ln0jYx7V55RW+LaWco8bYMhpOsD4gunzZCx1hnwX0UW1sFjwFJ6Q00nGTnbGq0Kb7nywIm/ZeTl/otbwINYANVsStAAD/ABUODeT4eYFBMFbMEDOivTrmb8SlA8E92BfVuaIoDQEGTC5EtfZ+yWyumoXqSHnW4juPE5HyCqxNg+H+RzLbcjeTB8Hk87cC5OG4EG0YqhbRt5C8r5jNJjbH08LQRiDA5q+AQ7MSUGBGbw0dYPZAozF87zAw8P6PBQG+7+RifECWZF0OUrI1VbZALBRmyz10WnX/CEXA5xleTFllxMeuiZYxuzIVbEKwScxOSTPtQ3fCZVq89cqx90Dj/xmwIdqDfVpG027P2RJAQ4xpkT/bDGvNb0rNxSAFHSA8oGrOoz67x1zp91tYbs60PGYOx7DoNsXGcxWAdRftk7VQwEdJ0X1Wg/5oJxq+VYP+6ue4/HOfXaxBgmMMuWVAl9vwYTjWet/fVWE2nuZGCHi21DbzkcQI7RKyQxkKFeTEuaNc2qt2vidYcdYNOVZGhpULydeE5i6Nu0KkqMhdzKBD9LcSyjHPbkL4lT7JnmqPd101TdX9qTg/24QZH3xcGZ/yRQJou0JwgRWhFSmJ4xiCQJoC+eE55NABOMC963QWOaLSWBskZWjnhhmMHdC0YM7DhCRa0UBtMgyO51flw9HEOiBHxk0BLa5jwaNIu+v3FxDEUsDzVbYRaVlHrXGxL7HxSAYSJyWft0tBtqB5hvl3tXpsQT4HC0stwNH3npbuh8aa4mgu346F+50TH5BjVyENfgH6dxdIXJgNk5HKzKtXI+Y55gLT3hViyOtUscg2UkaqIepDIyTTRkr3LB9qd4yLVp5hPXWOjYGzd2JGFaqMz7kGEB9l5INdiM1CqXOpL8y6X/gJqVzbmPPhOw98s7EzKyNV7f2uXYZWi1unqdWlcDJRqLKzNieuyjIFTzYW9h6/DJxWvQBhRRA1+bO5KOXx5nL3d1SSvu0qYrXnpSg2V1jdfhvLotBwiH/OCXaKssIVraZZ3gDDSGSOtP5WPM7yens30yyEJXnS85iNBKDkcuWJ9rw6K/8HYlCCzO9e55cbLYRIK9KQ7VlrvotumrAPkaawssAPHuice6jMs4rov6Kt2Xku5+3qgN0a1uwKBP0Hf0atUoUEdH9BWrDchat7uvhrNMLmrpd5G3tWnYDhoBghvs9Q5kXA/QPX4nnhVh1FH0JCZnlaCf5T7nkIb5uMKavaGQmG4YbjVN3G3Hn+4xcxshnOl2FCjiit351X6+A+qLT37he8pPx2sulX4oEuXkqubuSxDhT8DRzHijBLWW+1wyZoCZMZOPqycFf6rsd7aXDfWQ83VrT1KS/Ra5R0wDK7SYP3N1sL+Y25e6q6drfIOIMbpjpHWfw3cZm1mWUtH6lNgVNVGX015P2wxfczonu8bXUUZiTRwOL1XHZUU49G8ArYuMiZOMT/JGhheFx9MKsUqcv/H2uOp7G8sJoqD9GNHoM66eaDgRduXtgqOa3FN6hT6tpOC40zkf1KuyNxypcPrwrFPyhWZa09P/P7sCKV0+MRMm0+jtHLtlpUsmMdH484KtVdz8KbVDCvbO6ohMIX2PFdvy454fFlG5VSpMjE=","Overrides":null}
+```
+
+
+<details>
+<summary>旧版说明和配置</summary>
+### **[脚本] [Beta]** P2 Forsaken beta  guide
+仅对自己显示的 P2 Forsaken 辅助。它读取实时 Missing Debuff，通过地图特效追踪塔组，判断处理组，并只引导本地玩家到配置好的相对塔位置。
+
+默认模型：
+- 塔本身的位置通过地图特效推断。
+- 基础站位是相对塔的。配置的角度/距离表决定每个职责相对当前塔组的站位。
+- 分组模式控制空白 A/B 组设置如何从第一次 Missing 预报中自动捕获。
+- 默认分组模式会将 A 组捕获为两名头部分摊玩家，加上最高优先级的圆圈玩家和最高优先级的扇形玩家。`1238/4567` 配对模式则改为配对优先级槽位 `1+3`、`2+4`、`5+7`、`6+8`。
+- 全局优先级控制自动分组选择以及同 Debuff/辅助排序。
+
+配置说明：
+- 当所选打法会从初始 Missing 预报定义 A 组时，请保持 A 组和 B 组为空。
+- 如果你的队伍在初始 Debuff 预报之外指定四人组，请使用固定 A/B 组。
+- 在回放检查时，可用 Debug 标签页确认检测到的塔组、自动分组、实时 Debuff 职责以及选中的站位规则。
+
+本仓库中的脚本文件：
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_beta.cs
+```
+
+#### AAABBBBA 固定搭档自动分组
+波次表：A 组处理第 `1, 2, 3, 8` 波；B 组处理第 `4, 5, 6, 7` 波。这与当前 Toxic Friends / 固定搭档 / Forsaken Buddies 风格 RaidPlan 的处理顺序相同；具体固定搭档站位仍可能因计划不同而不同。不要把它视为地区专用，因为同一类打法目前在海外 Discord/RaidPlan 环境和 NA Kefkabin 风格材料中都在使用。
+
+优先级: `H2 M2 OT M1 R2 R1 MT H1`.
+
+相关公开计划:
+- [Toxic Friends - UMAD P2](https://raidplan.io/plan/8wo9cYItAo2mkKSc#2)
+- [Fixed Partners Modified Toxic Friends](https://raidplan.io/plan/aZjFjQN2CVs3LxIH)
+- [Forsaken AAABBBBA a lot of fixed stuff](https://raidplan.io/plan/sGTZEzSxNJ790PTQ)
+- [Forsaken Buddies](https://raidplan.io/plan/cKt22s4zMP50lDOV)
+- [NA Kefkabin / UMAD P2: Forsaken](https://docs.google.com/presentation/d/1xzKhp29UPlZFICbZTtcFSJr_dQDCj93UKISG1_-SwhU/preview#slide=id.g3e5d74e9fd1_0_0)
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"AAABBBBA 固定搭档自动分组","Configuration":"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","Overrides":null}
+```
+
+#### Pino / 1238-4567 pair
+波次表: A 组 处理第 1, 2, 3, 8; B 组 处理第 4, 5, 6, 7.
+
+A/B 顺序：AAABBBBA。
+
+分组模式：优先级序号配对 1238/4567。优先级槽位 1+3、2+4、5+7、6+8 配对。包含一个头部分摊标记的配对成为 A 组；非分摊配对成为 B 组。
+
+优先级：MT OT H1 H2 M1 M2 R1 R2。
+
+此预设遵循参考脚本 P2_Missing_1238_4567_Pair.cs：在 022 中，两个扇形都使用左塔，两个圆圈都使用右塔。
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"Pino / 1238-4567 搭档","Configuration":"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","Overrides":null}
+```
+
+#### EU Pairstrat / 1238-4567 pair
+波次表: A 组 处理第 1, 2, 3, 8; B 组 处理第 4, 5, 6, 7.
+
+A/B 顺序：AAABBBBA。
+
+分组模式：显式整组配对 1238/4567。配置配对为 H1+MT、OT+H2、R2+M2、M1+R1。包含一个头部分摊标记的配对成为 A 组；非分摊配对成为 B 组。
+
+优先级: H1 H2 MT OT M1 M2 R1 R2.
+
+来源：
+- [Meow³'s Braindead P2 / Pairstrat Static + Uptime](https://raidplan.io/plan/lZWqxfxvyhF9sp3Z)
+
+此预设遵循 lZW RaidPlan 的配对结构，不再是 Pino 的镜像。它使用 H1+MT、OT+H2、R2+M2、M1+R1 的显式整组配对分配。奇数组扇形站位保留在左塔；偶数组扇形站位保持在两个塔上。
+
+> [!Warning]
+>
+> 此 lZW 导入包含打法专用配对和坐标。未检查队伍采用的配对规则前，不应将其与 Pino/KT 导入互换使用。
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"EU Pairstrat / 1238-4567 搭档","Configuration":"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","Overrides":null}
+```
+#### Yan Flash / Poikos tank LB3 1-4/5-8
+波次表: A 组 处理第 `1, 2, 3, 4`; B 组 处理第 `5, 6, 7, 8`.
+
+A/B 顺序：`AAAABBBB`。
+
+优先级：`H2 H1 MT OT M1 M2 R1 R2`。
+
+来源：
+- [Yan Flash / 絶妖星乱舞](https://yan-flash.com/ultimate/yosei-ranbu)
+
+> [!Warning]
+>
+> Yan Flash 将其描述为 Poikos 坦克 LB3 处理。此预设故意留空 A 组和 B 组。脚本应从初始预报中自动捕获第一塔组：两名头部分摊玩家，加上最高优先级的圆圈与扇形玩家。除非你的队伍使用真正固定成员的变体，否则不要用 TH/DPS 或优先级前半/后半组填入 A/B 组。
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"Yan Flash / Poikos 坦克 LB3 1-4/5-8","Configuration":"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","Overrides":null}
+```
+
+#### Drippy regular 1458-2367 auto group
+波次表: A 组 处理第 `1, 4, 5, 8`; B 组 处理第 `2, 3, 6, 7`.
+
+A/B 顺序：`ABBAABBA`。
+
+优先级：`MT OT H1 H2 R2 R1 M2 M1`。
+
+来源：
+- [Drippy / P2 ミッシング](https://drippy-sokuhou.com/articles/kefka-p2-missing)
+
+选择此优先级是为了让自动分组选择头部玩家、最高优先级 TH 圆圈/扇形玩家，以及最低优先级 DPS 圆圈/扇形玩家，以匹配文章描述的分组。
+
+> [!Warning]
+>
+> Drippy 使用玩家当前站位描述同标记左右移动。当前脚本改用固定优先级排序表达。如果你的队伍需要精确按当前位置排序，脚本逻辑需要做一个小扩展。
+
+```
+{"TargetScriptName":"SplaSim.SplatoonScripts.Duties.Dawntrail.DancingMadUltimate@P2_Forsaken_beta","ConfigurationName":"Drippy 常规 1458-2367 自动分组","Configuration":"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","Overrides":null}
+```
+</details>
+
+## [脚本] [Beta] P2 Forsaken Fixed Partners
+仅用于始终依赖固定搭档配对的打法来处理 Forsaken 的脚本。
+
+> [!Warning]
+>
+> 站位可能还不是很精确，但大方向应该没问题。
+>
+> 你玩的每个职责都需要配置。
+>
+> 导入你想使用的打法对应的脚本和配置。
+
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Fixed_Partner.cs
+```
+
+### [Beta，可能有错误] Kroxy/Rinon 新站位的按职责配置，扇形诱导者在场标角落
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"R1 - Kroxy/Rinon - 新站位，诱导者在场标角落","Configuration":"GwQCQCwK7GYxRc2fgNmBoprgsqHr3YptpbpzoSLdNEETlZfa/Q2FZIHRuf+bLf0uId41xib4uyjspZximnMNwDEQ0IW0foCLuXSQ3y+AhIK+ym2n4QMARiMs4RI+pKEtZOx+RP7qx79M4c9WwODUoXzKTdj1iC6Nco807720r74s4GX6jTTMUymm7dFOdUZHJry+L8vmyyRdlIfzAvjYK0Cv7zHoixYMd09wfUqA5iMaP7ajPmQFTow0gLV4vZ1v4I1A4PpluvqB85lZMe2ncvt3TwftZOwGy8IJ6Wuol/wB","Overrides":"G+Z9AJwHtlscKJjiUx1GdtGDcvf3fTOnr68Lz42/WACwh2oidwrIvcgFctVWTHcD7EsxFYMpWCw6frVfqYmcZ7VkxNUpcf91zxwQKkI9s919HCDSqRgZa6IV68iVayPzGExvrVqMxg95zqxhcSD/m4PYqP6rl5mZEGlsErH+lL0f6ZDf0tb9Q0K4ghq82VPrONdpcA3TC7DQlrIR6ivVFEJlXSYQI6u0l6vQDaiqQNi13cxXr80xpR6j45Uz3y5GWqKIBAp5K0S8k37qTZCUOGGurcefQfOJjdKYAMGHs3h5hCSz+OETiNf+z7TdKjWy05EW08UJu/mZIEuoywXAE4oRAZsARRR3eQIFmdilpziybT92OUQlCNdn79ZXpfPdAgkqTFw3Pq0D59miIcYRiiuZ62hj++UM7XLXtveiRD+JKFNiLsSmPc7aZSY6raHFOKNbESmKGmyivkFEjWZcgnlSnZLGxPYldn+LPbJQVRACcB3MfLlRCakhd4xcOgYGPSC2HKkO/dkSkiX75jzHKOT06K2TSEJrgEISRKGucvkv/1MQGJSZKs6oOf3Ff4Le/CW7XQq8yyqYBoTZoe0jXmu3TZPSI6LNBYnmXbaqwAHtZdRhyOCOWxwoVQ0SUI7/nUHMzAT3GFoMwu/mesTlaDnWw0EXNKhJrxwkhrMaO3O+vHt5ay3wTClJ9tcuhnZfrMU7zHxeQkHYL0S7bTDYWXMdwioYAwDJrkLzbq2UeByTzHUWKIoSVgHhEKRjTfIrd4iODPasgz3v58bOx1k+AFHh1GEIUMLd84y3jgei4jLqcZWnPMgQGXfv9MCsFcXCApH1So3Dkr28SVMO8GafFSrfE2jOUI7EwDIdNpUbnRtzf5YlkyOdheHJhyYj7G5yqXNp7ueyZHKqMzFYXnAXPbQnxM9jgVYwdY/pjzyj8tiSVmWpMzXoP9Ugcr/JaG8cToh9aHPBt0ND1859gRnOOgAwsPXMgkaemcd8Gj2byMlT5s9jLdlydtqFedT1x+ou2Y55CBoU1+Dra+tGNqyM8c5lABHTw8ydZ9bAKt/wwiff/NRJBk6PJUkiys68ggGlcM+sfpkF8a0dmk8Ks1WFN75eA2NrR0Yh7m9JBTZ+y2Vd1iN9x7pdth+fCUbQN574yIBzPdhwPub8sggdMu1QXp8yvfKLm1rPqIMqZ7AgTK70b1fjbYpszZWY6iqnN5jRBfqeribHzH36u9g/FSFTYDMAID9GKsmb+P8GkMfsHeRMssBmAGDr/0odeAqxyiSKSwYAxEhp1bdjW3CcHE88+MbG+par1e3EH+CkDdz+qXAsUhsAEDKFbAMAryhWGwAQLZ4vMeYvmQHAMRDJg54r"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"R2 - Kroxy/Rinon - 新站位，诱导者在场标角落","Configuration":"GwQCQJwH2ZnlRLih/8J6ufv77v8z71O95+XJTUxbAz/AUKiGLuP/5h/pdwnxrrFtbIIxKewFlnmKaW4mgEOQR5F2HzCzXCo2X18ACQV9zS9XslABAJlpRjFqpIW4sYbiqx+Ru/v5lync1fIYs2A3f80v9lWP6NRGxW2YtuWwra4s4Gn6jbs7HubOsL6tD8tMRyZe35Vlc2WSTsotfwN87Bag13ewQF+0MN05Mfh+SUBzkR0/zOJ+yjKcmDTAu3jejzfwRAwE1y9pW4XzmXzJgiCmy394OKin+GrYFpZPD5uOUfQH","Overrides":"G+Z9AJwHtlscKJjiUx1GdtGDcvf3fTOnr68Lz42/WACwh2oidwrIvcgFctVWTHcD7EsxFYMpWCw6frVfqYmcZ7VkxNUpcf91zxwQKkI9s919HCDSqRgZa6IV68iVayPzGExvrVqMxg95zqxhcSD/m4PYqP6rl5mZEGlsErH+lL0f6ZDf0tb9Q0K4ghq82VPrONdpcA3TC7DQlrIR6ivVFEJlXSYQI6u0l6vQDaiqQNi13cxXr80xpR6j45Uz3y5GWqKIBAp5K0S8k37qTZCUOGGurcefQfOJjdKYAMGHs3h5hCSz+OETiNf+z7TdKjWy05EW08UJu/mZIEuoywXAE4oRAZsARRR3eQIFmdilpziybT92OUQlCNdn79ZXpfPdAgkqTFw3Pq0D59miIcYRiiuZ62hj++UM7XLXtveiRD+JKFNiLsSmPc7aZSY6raHFOKNbESmKGmyivkFEjWZcgnlSnZLGxPYldn+LPbJQVRACcB3MfLlRCakhd4xcOgYGPSC2HKkO/dkSkiX75jzHKOT06K2TSEJrgEISRKGucvkv/1MQGJSZKs6oOf3Ff4Le/CW7XQq8yyqYBoTZoe0jXmu3TZPSI6LNBYnmXbaqwAHtZdRhyOCOWxwoVQ0SUI7/nUHMzAT3GFoMwu/mesTlaDnWw0EXNKhJrxwkhrMaO3O+vHt5ay3wTClJ9tcuhnZfrMU7zHxeQkHYL0S7bTDYWXMdwioYAwDJrkLzbq2UeByTzHUWKIoSVgHhEKRjTfIrd4iODPasgz3v58bOx1k+AFHh1GEIUMLd84y3jgei4jLqcZWnPMgQGXfv9MCsFcXCApH1So3Dkr28SVMO8GafFSrfE2jOUI7EwDIdNpUbnRtzf5YlkyOdheHJhyYj7G5yqXNp7ueyZHKqMzFYXnAXPbQnxM9jgVYwdY/pjzyj8tiSVmWpMzXoP9Ugcr/JaG8cToh9aHPBt0ND1859gRnOOgAwsPXMgkaemcd8Gj2byMlT5s9jLdlydtqFedT1x+ou2Y55CBoU1+Dra+tGNqyM8c5lABHTw8ydZ9bAKt/wwiff/NRJBk6PJUkiys68ggGlcM+sfpkF8a0dmk8Ks1WFN75eA2NrR0Yh7m9JBTZ+y2Vd1iN9x7pdth+fCUbQN574yIBzPdhwPub8sggdMu1QXp8yvfKLm1rPqIMqZ7AgTK70b1fjbYpszZWY6iqnN5jRBfqeribHzH36u9g/FSFTYDMAID9GKsmb+P8GkMfsHeRMssBmAGDr/0odeAqxyiSKSwYAxEhp1bdjW3CcHE88+MbG+par1e3EH+CkDdz+qXAsUhsAEDKFbAMAryhWGwAQLZ4vMeYvmQHAMRDJg54r"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"M1 - Kroxy/Rinon - 新站位，诱导者在场标角落","Configuration":"GwICQJwFdoyemPmSH8jforKh693/Z96nes/Lk5uYtgZ+gDm3+xsK1twYfb0Y4x03cIJNhA0sWWTh/5NRDM3WNbf2UIcg6EvuWjXzE2OPaLy/AAoU9De/XMlCBQBkpmclq1VLSyONYn5Eevr5lSm0WoUxBLv5a36x/Y8Q2iqql+I2TNty2DZFBQw1nNzd8TB3hrXshyXNK6IbE8+uoGwKkhSMR/4GeNMdoM17WKD3WTD2RgxuFwQ0IYY/Z9kabIVi0gCbHA9/AW/EQHD8SpNVcD1LH1kQpHL7T91BjWIicwkp9N6Y1T8=","Overrides":"G+Z9AJwHtlscKJjiUx1GdtGDcvf3fTOnr68Lz42/WACwh2oidwrIvcgFctVWTHcD7EsxFYMpWCw6frVfqYmcZ7VkxNUpcf91zxwQKkI9s919HCDSqRgZa6IV68iVayPzGExvrVqMxg95zqxhcSD/m4PYqP6rl5mZEGlsErH+lL0f6ZDf0tb9Q0K4ghq82VPrONdpcA3TC7DQlrIR6ivVFEJlXSYQI6u0l6vQDaiqQNi13cxXr80xpR6j45Uz3y5GWqKIBAp5K0S8k37qTZCUOGGurcefQfOJjdKYAMGHs3h5hCSz+OETiNf+z7TdKjWy05EW08UJu/mZIEuoywXAE4oRAZsARRR3eQIFmdilpziybT92OUQlCNdn79ZXpfPdAgkqTFw3Pq0D59miIcYRiiuZ62hj++UM7XLXtveiRD+JKFNiLsSmPc7aZSY6raHFOKNbESmKGmyivkFEjWZcgnlSnZLGxPYldn+LPbJQVRACcB3MfLlRCakhd4xcOgYGPSC2HKkO/dkSkiX75jzHKOT06K2TSEJrgEISRKGucvkv/1MQGJSZKs6oOf3Ff4Le/CW7XQq8yyqYBoTZoe0jXmu3TZPSI6LNBYnmXbaqwAHtZdRhyOCOWxwoVQ0SUI7/nUHMzAT3GFoMwu/mesTlaDnWw0EXNKhJrxwkhrMaO3O+vHt5ay3wTClJ9tcuhnZfrMU7zHxeQkHYL0S7bTDYWXMdwioYAwDJrkLzbq2UeByTzHUWKIoSVgHhEKRjTfIrd4iODPasgz3v58bOx1k+AFHh1GEIUMLd84y3jgei4jLqcZWnPMgQGXfv9MCsFcXCApH1So3Dkr28SVMO8GafFSrfE2jOUI7EwDIdNpUbnRtzf5YlkyOdheHJhyYj7G5yqXNp7ueyZHKqMzFYXnAXPbQnxM9jgVYwdY/pjzyj8tiSVmWpMzXoP9Ugcr/JaG8cToh9aHPBt0ND1859gRnOOgAwsPXMgkaemcd8Gj2byMlT5s9jLdlydtqFedT1x+ou2Y55CBoU1+Dra+tGNqyM8c5lABHTw8ydZ9bAKt/wwiff/NRJBk6PJUkiys68ggGlcM+sfpkF8a0dmk8Ks1WFN75eA2NrR0Yh7m9JBTZ+y2Vd1iN9x7pdth+fCUbQN574yIBzPdhwPub8sggdMu1QXp8yvfKLm1rPqIMqZ7AgTK70b1fjbYpszZWY6iqnN5jRBfqeribHzH36u9g/FSFTYDMAID9GKsmb+P8GkMfsHeRMssBmAGDr/0odeAqxyiSKSwYAxEhp1bdjW3CcHE88+MbG+par1e3EH+CkDdz+qXAsUhsAEDKFbAMAryhWGwAQLZ4vMeYvmQHAMRDJg54r"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"M2 - Kroxy/Rinon - 新站位，诱导者在场标角落","Configuration":"GwICQJwFdoyemPmSH8jforKh693/Z96nes/Lk5uYtgZ+gDm3+xsK1twYfb0Y4x03cIJNhA0sWWTh/5NRDM3WNbf2UIcg6EvuWjXzE2OPaLy/AAoU9De/XMlCBQBkpmclq1VLSyONYn5Eevr5lSm0WoUxBLv5a36x/Y8Q2iqql+I2TNty2DZFBQw1nNzd8TB3hrXshyXNK6IbE8+uoGwKkhSMR/4GeNMdoM17WKD3WTD2RgxuFwQ0IYY/Z9kabIVi0gCbHA9/AW/EQHD8SpNVcD1LH1kQ5HL7T91BjWIicwkp9N6Y1T8=","Overrides":"G+Z9AJwHtlscKJjiUx1GdtGDcvf3fTOnr68Lz42/WACwh2oidwrIvcgFctVWTHcD7EsxFYMpWCw6frVfqYmcZ7VkxNUpcf91zxwQKkI9s919HCDSqRgZa6IV68iVayPzGExvrVqMxg95zqxhcSD/m4PYqP6rl5mZEGlsErH+lL0f6ZDf0tb9Q0K4ghq82VPrONdpcA3TC7DQlrIR6ivVFEJlXSYQI6u0l6vQDaiqQNi13cxXr80xpR6j45Uz3y5GWqKIBAp5K0S8k37qTZCUOGGurcefQfOJjdKYAMGHs3h5hCSz+OETiNf+z7TdKjWy05EW08UJu/mZIEuoywXAE4oRAZsARRR3eQIFmdilpziybT92OUQlCNdn79ZXpfPdAgkqTFw3Pq0D59miIcYRiiuZ62hj++UM7XLXtveiRD+JKFNiLsSmPc7aZSY6raHFOKNbESmKGmyivkFEjWZcgnlSnZLGxPYldn+LPbJQVRACcB3MfLlRCakhd4xcOgYGPSC2HKkO/dkSkiX75jzHKOT06K2TSEJrgEISRKGucvkv/1MQGJSZKs6oOf3Ff4Le/CW7XQq8yyqYBoTZoe0jXmu3TZPSI6LNBYnmXbaqwAHtZdRhyOCOWxwoVQ0SUI7/nUHMzAT3GFoMwu/mesTlaDnWw0EXNKhJrxwkhrMaO3O+vHt5ay3wTClJ9tcuhnZfrMU7zHxeQkHYL0S7bTDYWXMdwioYAwDJrkLzbq2UeByTzHUWKIoSVgHhEKRjTfIrd4iODPasgz3v58bOx1k+AFHh1GEIUMLd84y3jgei4jLqcZWnPMgQGXfv9MCsFcXCApH1So3Dkr28SVMO8GafFSrfE2jOUI7EwDIdNpUbnRtzf5YlkyOdheHJhyYj7G5yqXNp7ueyZHKqMzFYXnAXPbQnxM9jgVYwdY/pjzyj8tiSVmWpMzXoP9Ugcr/JaG8cToh9aHPBt0ND1859gRnOOgAwsPXMgkaemcd8Gj2byMlT5s9jLdlydtqFedT1x+ou2Y55CBoU1+Dra+tGNqyM8c5lABHTw8ydZ9bAKt/wwiff/NRJBk6PJUkiys68ggGlcM+sfpkF8a0dmk8Ks1WFN75eA2NrR0Yh7m9JBTZ+y2Vd1iN9x7pdth+fCUbQN574yIBzPdhwPub8sggdMu1QXp8yvfKLm1rPqIMqZ7AgTK70b1fjbYpszZWY6iqnN5jRBfqeribHzH36u9g/FSFTYDMAID9GKsmb+P8GkMfsHeRMssBmAGDr/0odeAqxyiSKSwYAxEhp1bdjW3CcHE88+MbG+par1e3EH+CkDdz+qXAsUhsAEDKFbAMAryhWGwAQLZ4vMeYvmQHAMRDJg54r"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"T1 - Kroxy/Rinon - 新站位，诱导者在场标角落","Configuration":"GwACACyLdyGjN2DeTskJlUIeTypZ9t5TZ/eXaHWkOwda/yZNhIXC27a+61UgCLVqHAkJMQqsUdXQFXPw39wYfb0Y4z+f4AbSNzBZkizsloxisgZrdD09UBcO2kKxY2l6LGvvEFNBX+IHGFBy7PjSd3mhhDSJOP/2nSm4DpA0OOWJB4NEIzjVy90aW8Is4Cj8Is29JLJeXSMeqH5GxygbP0kE52ZOt/JRtuhKLu9O3mdJ2Bncm2yICMF1HGv2vcA2XRuhCJwfFT+FJ4CU4leYnFI9C3ruuXC5BsdWQoDAwC0MddXTAQ==","Overrides":"G+Z9AJwHtlscKJjiUx1GdtGDcvf3fTOnr68Lz42/WACwh2oidwrIvcgFctVWTHcD7EsxFYMpWCw6frVfqYmcZ7VkxNUpcf91zxwQKkI9s919HCDSqRgZa6IV68iVayPzGExvrVqMxg95zqxhcSD/m4PYqP6rl5mZEGlsErH+lL0f6ZDf0tb9Q0K4ghq82VPrONdpcA3TC7DQlrIR6ivVFEJlXSYQI6u0l6vQDaiqQNi13cxXr80xpR6j45Uz3y5GWqKIBAp5K0S8k37qTZCUOGGurcefQfOJjdKYAMGHs3h5hCSz+OETiNf+z7TdKjWy05EW08UJu/mZIEuoywXAE4oRAZsARRR3eQIFmdilpziybT92OUQlCNdn79ZXpfPdAgkqTFw3Pq0D59miIcYRiiuZ62hj++UM7XLXtveiRD+JKFNiLsSmPc7aZSY6raHFOKNbESmKGmyivkFEjWZcgnlSnZLGxPYldn+LPbJQVRACcB3MfLlRCakhd4xcOgYGPSC2HKkO/dkSkiX75jzHKOT06K2TSEJrgEISRKGucvkv/1MQGJSZKs6oOf3Ff4Le/CW7XQq8yyqYBoTZoe0jXmu3TZPSI6LNBYnmXbaqwAHtZdRhyOCOWxwoVQ0SUI7/nUHMzAT3GFoMwu/mesTlaDnWw0EXNKhJrxwkhrMaO3O+vHt5ay3wTClJ9tcuhnZfrMU7zHxeQkHYL0S7bTDYWXMdwioYAwDJrkLzbq2UeByTzHUWKIoSVgHhEKRjTfIrd4iODPasgz3v58bOx1k+AFHh1GEIUMLd84y3jgei4jLqcZWnPMgQGXfv9MCsFcXCApH1So3Dkr28SVMO8GafFSrfE2jOUI7EwDIdNpUbnRtzf5YlkyOdheHJhyYj7G5yqXNp7ueyZHKqMzFYXnAXPbQnxM9jgVYwdY/pjzyj8tiSVmWpMzXoP9Ugcr/JaG8cToh9aHPBt0ND1859gRnOOgAwsPXMgkaemcd8Gj2byMlT5s9jLdlydtqFedT1x+ou2Y55CBoU1+Dra+tGNqyM8c5lABHTw8ydZ9bAKt/wwiff/NRJBk6PJUkiys68ggGlcM+sfpkF8a0dmk8Ks1WFN75eA2NrR0Yh7m9JBTZ+y2Vd1iN9x7pdth+fCUbQN574yIBzPdhwPub8sggdMu1QXp8yvfKLm1rPqIMqZ7AgTK70b1fjbYpszZWY6iqnN5jRBfqeribHzH36u9g/FSFTYDMAID9GKsmb+P8GkMfsHeRMssBmAGDr/0odeAqxyiSKSwYAxEhp1bdjW3CcHE88+MbG+par1e3EH+CkDdz+qXAsUhsAEDKFbAMAryhWGwAQLZ4vMeYvmQHAMRDJg54r"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"T2 - Kroxy/Rinon - 新站位，诱导者在场标角落","Configuration":"GwACACyLdyGjN2DeTskJlUIeTypZ9t5TZ/eXaHWkOwda/yZNhIXC27a+61UgCLVqHAkJMQqsUdXQFXPw39wYfb0Y4z+f4AbSNzBZkizsloxisgZrdD09UBcO2kKxY2l6LGvvEFNBX+IHGFBy7PjSd3mhhDSJOP/2nSm4DpA0OOWJB4NEIzjVy90aW8Is4Cj8Is29JLJeXSMeqH5GxygbP0kE52ZOt/JRtuhKLu9O3mdJ2Bncm2yICMF1HGv2vcA2XRuhCJwfFT+FJ4CU4leYnFI9C3rsuXC5BsdWQoDAwC0MddXTAQ==","Overrides":"G+Z9AJwHtlscKJjiUx1GdtGDcvf3fTOnr68Lz42/WACwh2oidwrIvcgFctVWTHcD7EsxFYMpWCw6frVfqYmcZ7VkxNUpcf91zxwQKkI9s919HCDSqRgZa6IV68iVayPzGExvrVqMxg95zqxhcSD/m4PYqP6rl5mZEGlsErH+lL0f6ZDf0tb9Q0K4ghq82VPrONdpcA3TC7DQlrIR6ivVFEJlXSYQI6u0l6vQDaiqQNi13cxXr80xpR6j45Uz3y5GWqKIBAp5K0S8k37qTZCUOGGurcefQfOJjdKYAMGHs3h5hCSz+OETiNf+z7TdKjWy05EW08UJu/mZIEuoywXAE4oRAZsARRR3eQIFmdilpziybT92OUQlCNdn79ZXpfPdAgkqTFw3Pq0D59miIcYRiiuZ62hj++UM7XLXtveiRD+JKFNiLsSmPc7aZSY6raHFOKNbESmKGmyivkFEjWZcgnlSnZLGxPYldn+LPbJQVRACcB3MfLlRCakhd4xcOgYGPSC2HKkO/dkSkiX75jzHKOT06K2TSEJrgEISRKGucvkv/1MQGJSZKs6oOf3Ff4Le/CW7XQq8yyqYBoTZoe0jXmu3TZPSI6LNBYnmXbaqwAHtZdRhyOCOWxwoVQ0SUI7/nUHMzAT3GFoMwu/mesTlaDnWw0EXNKhJrxwkhrMaO3O+vHt5ay3wTClJ9tcuhnZfrMU7zHxeQkHYL0S7bTDYWXMdwioYAwDJrkLzbq2UeByTzHUWKIoSVgHhEKRjTfIrd4iODPasgz3v58bOx1k+AFHh1GEIUMLd84y3jgei4jLqcZWnPMgQGXfv9MCsFcXCApH1So3Dkr28SVMO8GafFSrfE2jOUI7EwDIdNpUbnRtzf5YlkyOdheHJhyYj7G5yqXNp7ueyZHKqMzFYXnAXPbQnxM9jgVYwdY/pjzyj8tiSVmWpMzXoP9Ugcr/JaG8cToh9aHPBt0ND1859gRnOOgAwsPXMgkaemcd8Gj2byMlT5s9jLdlydtqFedT1x+ou2Y55CBoU1+Dra+tGNqyM8c5lABHTw8ydZ9bAKt/wwiff/NRJBk6PJUkiys68ggGlcM+sfpkF8a0dmk8Ks1WFN75eA2NrR0Yh7m9JBTZ+y2Vd1iN9x7pdth+fCUbQN574yIBzPdhwPub8sggdMu1QXp8yvfKLm1rPqIMqZ7AgTK70b1fjbYpszZWY6iqnN5jRBfqeribHzH36u9g/FSFTYDMAID9GKsmb+P8GkMfsHeRMssBmAGDr/0odeAqxyiSKSwYAxEhp1bdjW3CcHE88+MbG+par1e3EH+CkDdz+qXAsUhsAEDKFbAMAryhWGwAQLZ4vMeYvmQHAMRDJg54r"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"H1 - Kroxy/Rinon - 新站位，诱导者在场标角落","Configuration":"GwMCYCwK7GYxRc2fgNmBoprgsqHr3YptpbpzoSLdNEETlZfa/Q2FYtGx5rbR14sx3nEDJ9gsG5iCLPx/Moo1W6OmZ4NikLBxReh3+TQdPj/vF0B+gr7KbafwAQCjFrZwjQ9bmDoZuxmRHn5+ZArpgvBJHcqn3IT9b4SQJCtd3CPNey/tm5wChvE30jBPpZi2RzvVmWZM3F1O2eQkKSgP5x3noQdAynsGvc/CZR8EtgIBlwDDvtpkL2zHuuQCaihufv83gsDwKy/6wfQsUcVdvP17bk4nY0+SiYDKPUKd9gc=","Overrides":"G+Z9AJwHtlscKJjiUx1GdtGDcvf3fTOnr68Lz42/WACwh2oidwrIvcgFctVWTHcD7EsxFYMpWCw6frVfqYmcZ7VkxNUpcf91zxwQKkI9s919HCDSqRgZa6IV68iVayPzGExvrVqMxg95zqxhcSD/m4PYqP6rl5mZEGlsErH+lL0f6ZDf0tb9Q0K4ghq82VPrONdpcA3TC7DQlrIR6ivVFEJlXSYQI6u0l6vQDaiqQNi13cxXr80xpR6j45Uz3y5GWqKIBAp5K0S8k37qTZCUOGGurcefQfOJjdKYAMGHs3h5hCSz+OETiNf+z7TdKjWy05EW08UJu/mZIEuoywXAE4oRAZsARRR3eQIFmdilpziybT92OUQlCNdn79ZXpfPdAgkqTFw3Pq0D59miIcYRiiuZ62hj++UM7XLXtveiRD+JKFNiLsSmPc7aZSY6raHFOKNbESmKGmyivkFEjWZcgnlSnZLGxPYldn+LPbJQVRACcB3MfLlRCakhd4xcOgYGPSC2HKkO/dkSkiX75jzHKOT06K2TSEJrgEISRKGucvkv/1MQGJSZKs6oOf3Ff4Le/CW7XQq8yyqYBoTZoe0jXmu3TZPSI6LNBYnmXbaqwAHtZdRhyOCOWxwoVQ0SUI7/nUHMzAT3GFoMwu/mesTlaDnWw0EXNKhJrxwkhrMaO3O+vHt5ay3wTClJ9tcuhnZfrMU7zHxeQkHYL0S7bTDYWXMdwioYAwDJrkLzbq2UeByTzHUWKIoSVgHhEKRjTfIrd4iODPasgz3v58bOx1k+AFHh1GEIUMLd84y3jgei4jLqcZWnPMgQGXfv9MCsFcXCApH1So3Dkr28SVMO8GafFSrfE2jOUI7EwDIdNpUbnRtzf5YlkyOdheHJhyYj7G5yqXNp7ueyZHKqMzFYXnAXPbQnxM9jgVYwdY/pjzyj8tiSVmWpMzXoP9Ugcr/JaG8cToh9aHPBt0ND1859gRnOOgAwsPXMgkaemcd8Gj2byMlT5s9jLdlydtqFedT1x+ou2Y55CBoU1+Dra+tGNqyM8c5lABHTw8ydZ9bAKt/wwiff/NRJBk6PJUkiys68ggGlcM+sfpkF8a0dmk8Ks1WFN75eA2NrR0Yh7m9JBTZ+y2Vd1iN9x7pdth+fCUbQN574yIBzPdhwPub8sggdMu1QXp8yvfKLm1rPqIMqZ7AgTK70b1fjbYpszZWY6iqnN5jRBfqeribHzH36u9g/FSFTYDMAID9GKsmb+P8GkMfsHeRMssBmAGDr/0odeAqxyiSKSwYAxEhp1bdjW3CcHE88+MbG+par1e3EH+CkDdz+qXAsUhsAEDKFbAMAryhWGwAQLZ4vMeYvmQHAMRDJg54r"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"H2 - Kroxy/Rinon - 新站位，诱导者在场标角落","Configuration":"GwMCYCyLd4GjUzDfoy9UygQeVyrn9t5r95dodaQ7B1r/Jk2EhcLbtr7rVSAItWocCQkxCqxRxaKTDTFdlm628fWmUt7nCtuNrTBqTAWOYDVWYno2KAYJG1eEfpdP0+Hz8w3xE/QlfqABpZo2L/wh2lSHmBHx4ZePTEFdID7DKU88+BshKElHo3q5W2NrdAp4Gn+T5l4SWa+ukQdUP7vTKRudJJ2UR/njcuiGKG9f3mfhsjMA7wUCLgI79iDT/sJS6woX0B2dt+P+bwCB4Ze2zjA9U9C2W/FyvcOcOiRRJgQcd7M64QE=","Overrides":"G+Z9AJwHtlscKJjiUx1GdtGDcvf3fTOnr68Lz42/WACwh2oidwrIvcgFctVWTHcD7EsxFYMpWCw6frVfqYmcZ7VkxNUpcf91zxwQKkI9s919HCDSqRgZa6IV68iVayPzGExvrVqMxg95zqxhcSD/m4PYqP6rl5mZEGlsErH+lL0f6ZDf0tb9Q0K4ghq82VPrONdpcA3TC7DQlrIR6ivVFEJlXSYQI6u0l6vQDaiqQNi13cxXr80xpR6j45Uz3y5GWqKIBAp5K0S8k37qTZCUOGGurcefQfOJjdKYAMGHs3h5hCSz+OETiNf+z7TdKjWy05EW08UJu/mZIEuoywXAE4oRAZsARRR3eQIFmdilpziybT92OUQlCNdn79ZXpfPdAgkqTFw3Pq0D59miIcYRiiuZ62hj++UM7XLXtveiRD+JKFNiLsSmPc7aZSY6raHFOKNbESmKGmyivkFEjWZcgnlSnZLGxPYldn+LPbJQVRACcB3MfLlRCakhd4xcOgYGPSC2HKkO/dkSkiX75jzHKOT06K2TSEJrgEISRKGucvkv/1MQGJSZKs6oOf3Ff4Le/CW7XQq8yyqYBoTZoe0jXmu3TZPSI6LNBYnmXbaqwAHtZdRhyOCOWxwoVQ0SUI7/nUHMzAT3GFoMwu/mesTlaDnWw0EXNKhJrxwkhrMaO3O+vHt5ay3wTClJ9tcuhnZfrMU7zHxeQkHYL0S7bTDYWXMdwioYAwDJrkLzbq2UeByTzHUWKIoSVgHhEKRjTfIrd4iODPasgz3v58bOx1k+AFHh1GEIUMLd84y3jgei4jLqcZWnPMgQGXfv9MCsFcXCApH1So3Dkr28SVMO8GafFSrfE2jOUI7EwDIdNpUbnRtzf5YlkyOdheHJhyYj7G5yqXNp7ueyZHKqMzFYXnAXPbQnxM9jgVYwdY/pjzyj8tiSVmWpMzXoP9Ugcr/JaG8cToh9aHPBt0ND1859gRnOOgAwsPXMgkaemcd8Gj2byMlT5s9jLdlydtqFedT1x+ou2Y55CBoU1+Dra+tGNqyM8c5lABHTw8ydZ9bAKt/wwiff/NRJBk6PJUkiys68ggGlcM+sfpkF8a0dmk8Ks1WFN75eA2NrR0Yh7m9JBTZ+y2Vd1iN9x7pdth+fCUbQN574yIBzPdhwPub8sggdMu1QXp8yvfKLm1rPqIMqZ7AgTK70b1fjbYpszZWY6iqnN5jRBfqeribHzH36u9g/FSFTYDMAID9GKsmb+P8GkMfsHeRMssBmAGDr/0odeAqxyiSKSwYAxEhp1bdjW3CcHE88+MbG+par1e3EH+CkDdz+qXAsUhsAEDKFbAMAryhWGwAQLZ4vMeYvmQHAMRDJg54r"}
+```
+
+### [Beta，可能有错误] 新版 MEOW 打法的按职责配置，使用 2026-06-10 04:04:12 UTC 的 Zenith 标点
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"新站位 Meow / R2","Configuration":"GwMCYKyKd4HQCZj36YRKIcWdhVJh7z3zdn+JVke6c6D1b9JEmHVz2n/aKuIpoobl5eWVomuoWWBidFRDl7VNpNuLMd5xggo2i4OlMAyvaXEstLFWV+N2Z8Jc+NiQ4dHaIeMdRE/Ql17QBiiSb//yt2WhhyFGpM3PR6bQYkWCIS79eh3UES3hUJ/02WTGtyKA/01YZ6sXe7ZHoBwTh5dWNv2SCJ1LmktWzUlv5PDuy30WmN0ItF0QWCEMeUrOMqzql1TAGrfO8/h3BAaCXy44IXrmHqX505WmNj0MEB9kInXajEI+","Overrides":"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"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"新站位 Meow / R1","Configuration":"GwMCYKwK7LbYQ1bCPXyj1kK1E6Pe2/19R7Q60p0DrX+TJsJCwbo57T9tFfEUUcPy8vJK0TWULDA62dCVZ82N0dfLYrzjBpsgFssGpiAL/0tGMVRbtUaH6UVdNYDjBnKeoC+9oA0oLnZ89eNlWQtjNyL1/HzJFOpYOYchLv16HU5HNGWn+qTPJtO+FQHob8I6W73Ysz0492Ni5XVWNv0lERouCW/5ZDZ0JwPvsazPQsveSWbbQYCVweReErEtbFVe5oWshsy9r/4TyYIdv0Jywq5nYauC05eLuWJaGEztQTDn3VekHg==","Overrides":"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"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"新站位 Meow / M2","Configuration":"GwACYJwHdowYoXEjf0C9bOh6t2J/n+rO5Sc34zcYtfsbClM378/f5RHXtNmihMaksAusyzTFfD37wTeRsPGKKBZpOlxuul8A6Qn6ml+uZKELAGQmQwWqWjOm7yuKr2JE7PCTj0zBNosTTILd/DW/2NffEYLdFBYH7W083XbG2/RSja9X9wt3dzzMnfH6tj4sQx+sL9e5mUo2piJpny75u5msuAbo5nYW6DELczoQA293AxsGbMhVZrfc8hiXUGF0Y4/Lfv47YhAs9QWQ3bDcGXjIgiC707+261NRfPWMDwzg1HVfRf8B","Overrides":"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"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"新站位 Meow / M1","Configuration":"GwACYCwK7GYxRc2fgNmBoprgsqHr3Yr9fao7F+pDt5r5xdr9DYVmgZHRMXXz/vxdHnFNmy1KaEwKu8C6TFPM17MffBMJG6+IYpGmw+Wm+wWQnqCv7nKlkQAAhgxZyGnemMxXZFzFiNjhJx+Zgm0WJ5ioa/fqLsL1d4RgN4XFQXSrmiWulvTiV9er+4W0HnsnVtNt2ofQq9PlOjdTycZUJO3TxXk3kxXXAN3cbtBjFuZ0IODtbmDDgA25su2WWx7jEiqMbuxx2c9/RyBY6gsgk7DcGXgwmjv9a7s+FRlXz/jAAE5dZyr6Dw==","Overrides":"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"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"新站位 Meow / H2","Configuration":"GwICACwK7MYxRUkt4M+BompWXMfs/r6zYn+f6s6F+tCtZn4xFIpFpxq6pm7+n7/LI65po00JjUllXaCZppituUHUTQfl6Qhj6TiGrun2BVCqoK/ucqVIAABjIBZxhi82axUZ10gi/vzT70zB3YFDJuravbqLcP0hIfhhChpEt6pZ4mqZb351vdbfSOuxd2I13aZ96L06Xa4K8LxsPE/SXp2b8+bQ264Bct8u6I0WMXckiO2RECDnbSS0TVuTBVyaAglgQ8dzr8ITYZLQL4hNkuAzQPztQj39N3ZiFRnXxk3BeUKgzqzNHw==","Overrides":"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"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"新站位 Meow / H1","Configuration":"GwICACwKbBtpPXRRcfhialBd7+3+vrNif5/qzoX60K1mfjEUikWnGrqsuSl9vRjjHTdwgs2ygSnIwp/JKIZqq9aorblB1E0H5ekIY+k4hq5+A0Cpgr66y5UiAQCMkdjEFb4sWatkXCOJ9PzzO1PIHQTp1LV7dRfh+kNC6DAzHaJb1Sxxtcw3v7pe62+k9dg7sZpu0z50RjJRAeVlU54kV+fmvDm87QaQ++5Bb7Rg7o0g4pEAKF6QmG2KJltxaQIBMDqbrsITYSL0a5xMIvhsoJNbvfw3TKyScW0yhXhZoGXW5Q8=","Overrides":"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"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"新站位 Meow / OT","Configuration":"G/8BACyLtwV4dArmO/pCpZDHSeXc3nvt/hKtjnTnQOvfpImwUHjb1ne9CgShVo0jISFGgTWqWHSqocuaG6Ovl8V4zw2cYLNsYLIkWfj7ZBRrtkZtzQ0qDp46KGBF2dBxPzRvCFTQl/iBBpSWO7/2w7rUQzyJ+Pzbf6bgdqDIhFOeeABIFNGlXu7W2CphAaP0izT3ksh6dY18ovo5OkHZCJKk5VE+x655kL17lM9ZsPUOJPz9QCDPaSw5enttljZBCEiMup7CG2DC7ysVJzzPEt56km43IWo9hGgK8qrCWON2","Overrides":"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"}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"新站位 Meow / MT","Configuration":"G/8BACyLtwV4dArmO/pCpZDHSeXc3nvt/hKtjnTnQOvfpImwUHjb1ne9CgShVo0jISFGgTWqWHSqocuaG6Ovl8V4zw2cYLNsYLIkWfj7ZBRrtkZtzQ0qDp46KGBF2dBxPzRvCFTQl/iBBpSWO7/2w7rUQzyJ+Pzbf6bgdqDIhFOeeABIFNGlXu7W2CphAaP0izT3ksh6dY18ovo5OkHZCJKk5VE+x655kL17lM9ZsPUOJPz9QCDPaSw5enttljZBCEiMup7CG2DC7ysVJzzPEl57km43IWo9hGgK8qrCWON2","Overrides":"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"}
+```
+
+<details>
+    <summary>旧配置 for meow/rinon here (originals)</summary>
+
+
+### [Beta，可能有错误] Kroxy/Rinon（无南侧调整）的按职责配置 - 旧站位，90 度诱导
+
+在脚本配置的“Saved configurations”标签页中导入此配置。
+
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"R1 - Kroxy/Rinon - 旧站位，90 度诱导","Configuration":"GwQCQCwK7GYxRc2fgNmBoprgsqHr3YptpbpzoSLdNEETlZfa/Q2FZIHRuf+bLf0uId41xib4uyjspZximnMNwDEQ0IW0foCLuXSQ3y+AhIK+ym2n4QMARiMs4RI+pKEtZOx+RP7qx79M4c9WwODUoXzKTdj1iC6Nco807720r74s4GX6jTTMUymm7dFOdUZHJry+L8vmyyRdlIfzAvjYK0Cv7zHoixYMd09wfUqA5iMaP7ajPmQFTow0gLV4vZ1v4I1A4PpluvqB85lZMe2ncvt3TwftZOwGy8IJ6Wuol/wB","Overrides":null}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"R2 - Kroxy/Rinon - 旧站位，90 度诱导","Configuration":"GwQCQJwH2ZnlRLih/8J6ufv77v8z71O95+XJTUxbAz/AUKiGLuP/5h/pdwnxrrFtbIIxKewFlnmKaW4mgEOQR5F2HzCzXCo2X18ACQV9zS9XslABAJlpRjFqpIW4sYbiqx+Ru/v5lync1fIYs2A3f80v9lWP6NRGxW2YtuWwra4s4Gn6jbs7HubOsL6tD8tMRyZe35Vlc2WSTsotfwN87Bag13ewQF+0MN05Mfh+SUBzkR0/zOJ+yjKcmDTAu3jejzfwRAwE1y9pW4XzmXzJgiCmy394OKin+GrYFpZPD5uOUfQH","Overrides":null}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"M1 - Kroxy/Rinon - 旧站位，90 度诱导","Configuration":"GwICQJwFdoyemPmSH8jforKh693/Z96nes/Lk5uYtgZ+gDm3+xsK1twYfb0Y4x03cIJNhA0sWWTh/5NRDM3WNbf2UIcg6EvuWjXzE2OPaLy/AAoU9De/XMlCBQBkpmclq1VLSyONYn5Eevr5lSm0WoUxBLv5a36x/Y8Q2iqql+I2TNty2DZFBQw1nNzd8TB3hrXshyXNK6IbE8+uoGwKkhSMR/4GeNMdoM17WKD3WTD2RgxuFwQ0IYY/Z9kabIVi0gCbHA9/AW/EQHD8SpNVcD1LH1kQpHL7T91BjWIicwkp9N6Y1T8=","Overrides":null}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"M2 - Kroxy/Rinon - 旧站位，90 度诱导","Configuration":"GwICQJwFdoyemPmSH8jforKh693/Z96nes/Lk5uYtgZ+gDm3+xsK1twYfb0Y4x03cIJNhA0sWWTh/5NRDM3WNbf2UIcg6EvuWjXzE2OPaLy/AAoU9De/XMlCBQBkpmclq1VLSyONYn5Eevr5lSm0WoUxBLv5a36x/Y8Q2iqql+I2TNty2DZFBQw1nNzd8TB3hrXshyXNK6IbE8+uoGwKkhSMR/4GeNMdoM17WKD3WTD2RgxuFwQ0IYY/Z9kabIVi0gCbHA9/AW/EQHD8SpNVcD1LH1kQ5HL7T91BjWIicwkp9N6Y1T8=","Overrides":null}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"T1 - Kroxy/Rinon - 旧站位，90 度诱导","Configuration":"GwACACyLdyGjN2DeTskJlUIeTypZ9t5TZ/eXaHWkOwda/yZNhIXC27a+61UgCLVqHAkJMQqsUdXQFXPw39wYfb0Y4z+f4AbSNzBZkizsloxisgZrdD09UBcO2kKxY2l6LGvvEFNBX+IHGFBy7PjSd3mhhDSJOP/2nSm4DpA0OOWJB4NEIzjVy90aW8Is4Cj8Is29JLJeXSMeqH5GxygbP0kE52ZOt/JRtuhKLu9O3mdJ2Bncm2yICMF1HGv2vcA2XRuhCJwfFT+FJ4CU4leYnFI9C3ruuXC5BsdWQoDAwC0MddXTAQ==","Overrides":null}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"T2 - Kroxy/Rinon - 旧站位，90 度诱导","Configuration":"GwACACyLdyGjN2DeTskJlUIeTypZ9t5TZ/eXaHWkOwda/yZNhIXC27a+61UgCLVqHAkJMQqsUdXQFXPw39wYfb0Y4z+f4AbSNzBZkizsloxisgZrdD09UBcO2kKxY2l6LGvvEFNBX+IHGFBy7PjSd3mhhDSJOP/2nSm4DpA0OOWJB4NEIzjVy90aW8Is4Cj8Is29JLJeXSMeqH5GxygbP0kE52ZOt/JRtuhKLu9O3mdJ2Bncm2yICMF1HGv2vcA2XRuhCJwfFT+FJ4CU4leYnFI9C3rsuXC5BsdWQoDAwC0MddXTAQ==","Overrides":null}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"H1 - Kroxy/Rinon - 旧站位，90 度诱导","Configuration":"GwMCYCwK7GYxRc2fgNmBoprgsqHr3YptpbpzoSLdNEETlZfa/Q2FYtGx5rbR14sx3nEDJ9gsG5iCLPx/Moo1W6OmZ4NikLBxReh3+TQdPj/vF0B+gr7KbafwAQCjFrZwjQ9bmDoZuxmRHn5+ZArpgvBJHcqn3IT9b4SQJCtd3CPNey/tm5wChvE30jBPpZi2RzvVmWZM3F1O2eQkKSgP5x3noQdAynsGvc/CZR8EtgIBlwDDvtpkL2zHuuQCaihufv83gsDwKy/6wfQsUcVdvP17bk4nY0+SiYDKPUKd9gc=","Overrides":null}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"H2 - Kroxy/Rinon - 旧站位，90 度诱导","Configuration":"GwMCYCyLd4GjUzDfoy9UygQeVyrn9t5r95dodaQ7B1r/Jk2EhcLbtr7rVSAItWocCQkxCqxRxaKTDTFdlm628fWmUt7nCtuNrTBqTAWOYDVWYno2KAYJG1eEfpdP0+Hz8w3xE/QlfqABpZo2L/wh2lSHmBHx4ZePTEFdID7DKU88+BshKElHo3q5W2NrdAp4Gn+T5l4SWa+ukQdUP7vTKRudJJ2UR/njcuiGKG9f3mfhsjMA7wUCLgI79iDT/sJS6woX0B2dt+P+bwCB4Ze2zjA9U9C2W/FyvcOcOiRRJgQcd7M64QE=","Overrides":null}
+```
+
+### [Beta，可能有错误] Meow 打法旧站位的按职责配置
+
+在脚本配置的“Saved configurations”标签页中导入此配置。
+
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow 旧版 / MT","Configuration":"G/8BACyLtwV4dArmO/pCpZDHSeXc3nvt/hKtjnTnQOvfpImwUHjb1ne9CgShVo0jISFGgTWqWHSqocuaG6Ovl8V4zw2cYLNsYLIkWfj7ZBRrtkZtzQ0qDp46KGBF2dBxPzRvCFTQl/iBBpSWO7/2w7rUQzyJ+Pzbf6bgdqDIhFOeeABIFNGlXu7W2CphAaP0izT3ksh6dY18ovo5OkHZCJKk5VE+x655kL17lM9ZsPUOJPz9QCDPaSw5enttljZBCEiMup7CG2DC7ysVJzzPEl57km43IWo9hGgK8qrCWON2","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow 旧版 / OT","Configuration":"G/8BACyLtwV4dArmO/pCpZDHSeXc3nvt/hKtjnTnQOvfpImwUHjb1ne9CgShVo0jISFGgTWqWHSqocuaG6Ovl8V4zw2cYLNsYLIkWfj7ZBRrtkZtzQ0qDp46KGBF2dBxPzRvCFTQl/iBBpSWO7/2w7rUQzyJ+Pzbf6bgdqDIhFOeeABIFNGlXu7W2CphAaP0izT3ksh6dY18ovo5OkHZCJKk5VE+x655kL17lM9ZsPUOJPz9QCDPaSw5enttljZBCEiMup7CG2DC7ysVJzzPEt56km43IWo9hGgK8qrCWON2","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow 旧版 / H1","Configuration":"GwICACwKbBtpPXRRcfhialBd7+3+vrNif5/qzoX60K1mfjEUikWnGrqsuSl9vRjjHTdwgs2ygSnIwp/JKIZqq9aorblB1E0H5ekIY+k4hq5+A0Cpgr66y5UiAQCMkdjEFb4sWatkXCOJ9PzzO1PIHQTp1LV7dRfh+kNC6DAzHaJb1Sxxtcw3v7pe62+k9dg7sZpu0z50RjJRAeVlU54kV+fmvDm87QaQ++5Bb7Rg7o0g4pEAKF6QmG2KJltxaQIBMDqbrsITYSL0a5xMIvhsoJNbvfw3TKyScW0yhXhZoGXW5Q8=","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow 旧版 / H2","Configuration":"GwICACwK7MYxRUkt4M+BompWXMfs/r6zYn+f6s6F+tCtZn4xFIpFpxq6pm7+n7/LI65po00JjUllXaCZppituUHUTQfl6Qhj6TiGrun2BVCqoK/ucqVIAABjIBZxhi82axUZ10gi/vzT70zB3YFDJuravbqLcP0hIfhhChpEt6pZ4mqZb351vdbfSOuxd2I13aZ96L06Xa4K8LxsPE/SXp2b8+bQ264Bct8u6I0WMXckiO2RECDnbSS0TVuTBVyaAglgQ8dzr8ITYZLQL4hNkuAzQPztQj39N3ZiFRnXxk3BeUKgzqzNHw==","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow 旧版 / M1","Configuration":"GwACYCwK7GYxRc2fgNmBoprgsqHr3Yr9fao7F+pDt5r5xdr9DYVmgZHRMXXz/vxdHnFNmy1KaEwKu8C6TFPM17MffBMJG6+IYpGmw+Wm+wWQnqCv7nKlkQAAhgxZyGnemMxXZFzFiNjhJx+Zgm0WJ5ioa/fqLsL1d4RgN4XFQXSrmiWulvTiV9er+4W0HnsnVtNt2ofQq9PlOjdTycZUJO3TxXk3kxXXAN3cbtBjFuZ0IODtbmDDgA25su2WWx7jEiqMbuxx2c9/RyBY6gsgk7DcGXgwmjv9a7s+FRlXz/jAAE5dZyr6Dw==","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow 旧版 / M2","Configuration":"GwACYJwHdowYoXEjf0C9bOh6t2J/n+rO5Sc34zcYtfsbClM378/f5RHXtNmihMaksAusyzTFfD37wTeRsPGKKBZpOlxuul8A6Qn6ml+uZKELAGQmQwWqWjOm7yuKr2JE7PCTj0zBNosTTILd/DW/2NffEYLdFBYH7W083XbG2/RSja9X9wt3dzzMnfH6tj4sQx+sL9e5mUo2piJpny75u5msuAbo5nYW6DELczoQA293AxsGbMhVZrfc8hiXUGF0Y4/Lfv47YhAs9QWQ3bDcGXjIgiC707+261NRfPWMDwzg1HVfRf8B","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow 旧版 / R1","Configuration":"GwMCYKwK7LbYQ1bCPXyj1kK1E6Pe2/19R7Q60p0DrX+TJsJCwbo57T9tFfEUUcPy8vJK0TWULDA62dCVZ82N0dfLYrzjBpsgFssGpiAL/0tGMVRbtUaH6UVdNYDjBnKeoC+9oA0oLnZ89eNlWQtjNyL1/HzJFOpYOYchLv16HU5HNGWn+qTPJtO+FQHob8I6W73Ysz0492Ni5XVWNv0lERouCW/5ZDZ0JwPvsazPQsveSWbbQYCVweReErEtbFVe5oWshsy9r/4TyYIdv0Jywq5nYauC05eLuWJaGEztQTDn3VekHg==","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow 旧版 / R2","Configuration":"GwMCYKyKd4HQCZj36YRKIcWdhVJh7z3zdn+JVke6c6D1b9JEmHVz2n/aKuIpoobl5eWVomuoWWBidFRDl7VNpNuLMd5xggo2i4OlMAyvaXEstLFWV+N2Z8Jc+NiQ4dHaIeMdRE/Ql17QBiiSb//yt2WhhyFGpM3PR6bQYkWCIS79eh3UES3hUJ/02WTGtyKA/01YZ6sXe7ZHoBwTh5dWNv2SCJ1LmktWzUlv5PDuy30WmN0ItF0QWCEMeUrOMqzql1TAGrfO8/h3BAaCXy44IXrmHqX505WmNj0MEB9kInXajEI+","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+```
+
+### Meow 打法配置占位
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Forsaken_Fixed_Partner","ConfigurationName":"Meow","Configuration":"G9sBYKwK7LbYQ1bCPXyj1kK1E6Pe2/19R7Q60p0DrX+TJsJCwbo57T9tFfEUUcPy8vJK0TXULDAzOrKhK89/b826XsT47NmwKaawScGET5KFdrtWr8azdv0ffEtx0wyyuGh7h5d5A/lO0Jde0AYUWbd+4Zu4voahRsTNb38yBRfLEaa49Ot1eI4QPCmMQ33SZ5OZXooA7hdhna1e7NkeoeTfRETeZBo5lH25p4IQCwFLQYNFQNB9slIQSb+WBVTYfVnHvxEIFLqUcYJKmXqU5o6rLW1qGJ5yIODYbVXCAQ==","Overrides":"GwLtACwObHA/xWAYipC3sH4shgdeKHd/3/fXT09XKsfOr1oRgWnKD10qSR9hYm7/g4zpeKBfhXJtJS0shYVOgbD4/e+XWkLnWS0dn7NyVRJj9s68F+QCK0L93s5MAUnFZVWFrzU91SJALrJxX8jI1mQ4KxV9MUKLN/yOTA+s0+JY/pGDOOP//59ZmBD1GIvq9EXP/UGH/ESTe0FCuIAaLy2UOm4zGnyG7gVZqEveiO4XtQNkJkhU2CEbt9eY0AxQVQB2nW/l/epcZ8xFb//llicTU23tCAIFvxUs3o+f+hrsy+wwl9bj/6B5x0ZuLBJhD7fyz1OknsU/voV4s/8DHVm7RjY61WZcnDAfniuKhLq7EnigGAHYBCpC3JU4KGBid/2xI+uOYpZDKEGYvhWTj0q39wIkiDBx3Dg/TeB3/uYUkmL8GUczl9XG+pdFDKu8DNLuz1Nte14sXel+T8N6m+ufEy7VJxLCypGxXiY2raPaOdPvOqUYSsGwyM/0XN1lagb2UUhdrF8Z5tp8ZRKIG8IBXI5zuNKsHqm1fOGzEhMDIIiJLVWOqyo+7XdkIYSMjpyeww3MJHoNUYhJvAd15J+W3sj7vAHtjKg0WnxV9JYO4/NlnyTGOA0Jy0e7jHhj5d1Nyh0RWBeYzWds14gDMKaYg8TkTnwcoKuGFlROIJ5BHZgrLjjXGJSfD/WJw9GytcCX7tCAl96zdwx7NWazv3x/5T0E4gPl/X65fx1onmvzbe61+SU6KPsHgbkNA2arr0NZFbMEwPAqep5PlfcJT1LmOAueRUmroHAc07JblNbyZR1P9r7DT14OTSTZWV7BubDrcEZQ0j33nCcnFFHxMZ2w2qd8ziFc9/BsZVmLYmABdX2izllZXx7TVAJG2nuFau9FavZQtsTYyh22Ljc2N+7FrMpDjmwWjksjNo/QmsmlzaV7kavykFObiUN9g2fooz5xgp4ttJKpc0y/cRHLc0vaLkubqUP+qSVR5Zvgg+PjhNyH1hd8OjRk7ZwXmOmsJwAmtr6zojPPgYs8aM+mcnKZ+dVMWyf2Trsyn3X91tAj21YC4aD4DK5wW3dmQ1UZb1wmEDk9FOW5qA2u8ivX+uaTn9rJ4OlRR0lk2Vl4MKgU5ln2L8skfrxLBUyh+KrYjY/X4NgKiJTh5W2twjG9i12X+6mByHKX9WfnyhGMTQo+EuGhPhxFIbN/WZSOmXYsr3eZvvO1nbrOrIPKZ1BDTI7031bn9wOzdajMFFfZvUGJLuif639peY80gMe+NLjVu+G7pMoAgGAJGaJRdkwsJucRbYO4W2cAMBcnE/B6JRWZCym0EyUDADYuU5ZqhjvRBkWzdG0ZLrFx/9j/GvAkQ+BGDzC7eWFbShZJV8DB2v0yAPh0fGvMVsyS33tOrgwAel6z8oH9ZctA3RLVkykDgEyam4Lx/9GXb30NdzC64axWitz+siQI3e+rGQA8nNzsnCmqfwkJnHF/zQBAgrb5v1T3wlgBSsPyC+yMp3/qDABiOC0lbk81gKvAv1vVbkmSAYCc5qZVfLdesZ28bTyrlbLhZt3mY6ni/QUzAFA1K78W/Lv11ZDUGQBUH8B/pdWIL5cYkOmTJAMAvsH4r65a8BPikCcv20oGAKXkG9nCDH4Y+gc="}
+```
+
+</details>
+
+## **[脚本] [Beta]** P2 Trine 引导
+
+仅对自己显示的 P2 Trine 辅助。它会显示：
+- 半场安全侧等待点；
+- 第一次 Trine 躲避位置；
+- 最后死刑分散位置。
+
+脚本会根据 Trine 预兆对象和 Trine 技能位置计算路线。最后的死刑分散使用脚本优先级：
+- 优先级 1 坦克：近 / MT 位置。
+- 优先级 2 坦克：远 / OT 位置。
+
+本仓库中的脚本文件：
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Trine_Beta.cs
+```
+
+## **[脚本] [Beta]** P2 Trine Effects
+
+此脚本按顺序显示 Trine 的效果（3-1-3）。
+如果无法使用“Trine 引导”，请使用这个。
+
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Trine_Effects.cs
+```
+
+
+
+# 单机制脚本
+> [!Important]
+>
+> 这些是用于单个机制处理的脚本。说明可能还不完整。
+>
+> 它们很可能只是临时方案，直到合并进单一脚本为止。
+
+## [JP] Yarn(优先级) or Reen AAABBBBA
+始终按 Debuff 和优先级处理。
+
+配置
+- 优先级 H1 > H2 > T1 > T2 > M1 > M2 > R1 > R2
+- 第一组配对模式
+    - [Yarn] 交替：T1H1 / T2H2 / M1R1 / M2R2
+    - [Reen] 交替：T1T2 / H1H2 / M1M2 / R1R2
+
+参考
+- [Yarn Flash](https://yan-flash.com/ultimate/yosei-ranbu#ult-phase-2)
+- [Reen X Post](https://x.com/Reen_Kelly/status/2062438946399994034)
+
+```
+https://raw.githubusercontent.com/PunishXIV/Splatoon/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_1238_4567_KT_Strat.cs
+```
+
+Yarn 优先级 & Piren 配置（ヤーン速報 ①ミッシング 優先順+立ち位置ぴれん）
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Missing_1238_4567_KT_Strat","ConfigurationName":"Yarn 优先级 20260610","Configuration":"Gy0LAJwFzrmcQIgfvULQrkO5+/veICJbfX3fuZTdi2+7n4zdjkExpAf2ikXHsuXyjmYEQmJsax5lYe6OpbvWNBZhevWtxyOExTrkHwo7wMU6sKr7zK/DYjJQF7BBBapHgVbwfHS7pK66U/V6NhlaC1JEvHEKoCW2iWqhxTUTBNOZvvEf1KBhjSQjbRo+Q4UFfcMiaUyYIASavFZl8xivIj2BpVI8LlZAcynYlTT5f3mDUjtIAkyRBCAJhOQQkoDJXBq8JrVS7V+AHYdCChCGx8cxFthUvJ1ZfLSjeY0ykOCmSQrATA1qt2/fH9146PC3WeMfLBP7Hmmp79Gq11PAtfLz3+kP9xDHhlYl16WcbLbXRM+2GRlFAuxkMHlD1dv38DxR3CyQ9hqI+QGYZ+NOrf2+jaFQxTRSj09LvTxPtdOFgsS2P8OEIgoEIW/js24LfGG+oliO/flGbEu4mYDVGPIVI5vG7Fdk4U8CMaYdi5q2XL9zXexrpkbZfvq/aToynEk0S2bKzhYTG1qfa+TNGJv8uPhgiIboAQ==","Overrides":null}
+```
+
+## [JP] Yarn(南侧调整) KTDN AAABBBBA
+按当前 Debuff 和最新塔侧处理。
+
+配置
+- 优先级 H1 > H2 > T1 > T2 > M1 > M2 > R1 > R2
+- 第一分摊规则
+    - 配对 Debuff（扇形 + 分摊 => 左，分散 + 分摊 => 右）
+    - 分摊优先级（仅交换分摊）
+- 最新塔组换边侧
+    - 后侧
+    - 前侧
+    - 优先级（左侧 => 低优先级去右，右侧：高优先级去左）
+
+参考
+- [【FF14】絶妖星乱舞 P2 ミッシング KTDN式 詳細解説版 - せいくおい Youtube](https://www.youtube.com/watch?v=vtGVWdaUDJs)
+- [Yarn Flash](https://yan-flash.com/ultimate/yosei-ranbu#ult-phase-2)
+
+```
+https://raw.githubusercontent.com/PunishXIV/Splatoon/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_KT_Alt.cs
+```
+
+Yarn 南侧调整 & Piren 配置（ヤーン速報 ②ミッシング 南調整+立ち位置ぴれん）
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Misisng_KT_Alt","ConfigurationName":"Yarn 南侧调整 20260609","Configuration":"GyILAJwHto1kHXSMH1tB6LJW2P191yAiXX3NmkvZTvzBJiUL6FhV4SOmDkuD//+npgODUsBFPUG676W3e4qW96DS1oJAWWv5Fu8yvHRq61LubrfFYoq6EDYQNSb06ABfAZJ1FqhBi9GFBmBqGjEkmCf6jLRIagEEwJiY1IwvwiV6IhRHBZKOg/KsAK4NY5Ev/6y8DmIA1sgAEAOEmCHEACbRMiLG0AZV7xhXgjARsmt0GQsZTSYqCXkmznCySjhpXGPzyKLb/rKl2/4Z4unpomoRaUt7S3HwZXciuIVojhKBP5nJ8Vw6+9Z2ENo7uzqIlsp3xJL/LOUZ4LmP839ctEQH5W1yR19bdlxXJMJHdRf7WDg1xy/x9kRzgHudz9cPhp8RChB65yAUFNJnMR6q3LmMuXQSQO3+cPefHt1xBbGtmpqp9oTlXi9OnPo2ud+2WLG6w3sLPxX3UX9So7isKOd0TEycWlJS5AgKky+g5PhaLhtV4wDl+y3uxgE=","Overrides":null}
+```
+
+## [JP] Old Yarn
+
+P2_Missing_1238_4567（称为 Old Yarn）
+按队伍优先级 [0-3] / [4-7] 处理
+
+- 分摊 + 高优先级 → 前半组
+- 剩余 2 人 → 后半组
+
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_1234_5678.cs
+```
+
+## [JP] Old Yarn
+
+按队伍优先级 [0, 2] / [1, 3] / [4, 6] / [5, 7] 处理
+
+[0, 2] & [1.,3]
+
+- 包含分摊的配对 → 前半组
+- 剩余配对 → 后半组
+
+[4, 6] & [5, 7]
+
+- 包含分摊的配对 → 前半组
+- 剩余配对 → 后半组
+
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_1238_4567_Pair.cs
+```
+
+## [JP] Missing Poikos 打法
+
+按队伍优先级 [0-3] / [4-7] 处理
+
+- 分摊 + 高优先级 → 前半组
+- 剩余 2 人 → 后半组
+
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_1238_4567_Pair.cs
+```
+
+## [Maybe JP] 半场交换打法/自定义职责
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_1234_5678_CustomRoles.cs
+```
+
+## Missing 1238/4567 KT 打法
+
+使用基于配对的半场分配和通用优先级职责
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_1238_4567_KT_Strat.cs
+```
+
+## Drippy 打法
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_1458_2367_Drippy.cs
+```
+
+## [NA/EU] Rinon
+```
+https://github.com/PunishXIV/Splatoon/raw/refs/heads/main/SplatoonScripts/Duties/Dawntrail/Dancing%20Mad/P2_Forsaken_Pattern/P2_Missing_1238_4567_Rinon.cs
+```
+### Rinon 脚本的新站位更新配置
+```
+{"TargetScriptName":"SplatoonScriptsOfficial.Duties.Dawntrail.Dancing_Mad@P2_Missing_1238_4567_Rinon","ConfigurationName":"","Configuration":"G+AJAKwKbGPJWIPQlQ4vhYN9+uHUqKF11+7vuwQR6dNqLmU76w+ShYLDB4eu6slRNk3xFYtOnrnN+f9/6vmWJRDAaAA7Jlrv6xq0FnhBxtxeIeizAGYRzyEdUWL6K5uzmO2iLlwbVJVOVEmDV5Lokrb53u//801GdUFeYO8UAUhFzERrcODKgKYb+s0CiZJmjXSMfboqLIS0LYsnhBEYOqD33M3jXeIkrqUSQTdwNZeAVdKFLDmm/h0ZA4iIATIGmvHQjAEzR+2ALmL1jlewOESMADADwnxMdbFp5HFm6ZNF85uUgANUd+KKYKALF2MmeQDDTn/LxmW1Mzfm817evtExn6eLJNHksuyefLQvUCv7aYajt3muOaTDDbzCsnPbHTzEynmctB+mDuPMH0JQSmaG/l4bXWhFh/w8xNqjNYY+tCOlcfww62CMcEDv8Io2W+4OD1GWb41clfGgsNGnddmAmP1NG8kB","Overrides":"G6sNAJwFbqzwEAyfHKemy93f9xLpc7qlbnYfcJje4KJu17/jA16dC9J+kxSKpJMUsWot6+W7kPIRJurImFfqenv2AoAy9S5ot24mgCQUe52nOMN2Nag4zSnXydUs9pIcGjQem5w/vC79V+oFKwDSJoe5ZWxA3FW2YSF/UAhJuAC5MIO4bm6isIpjkbyWEuIaxyK5Gx0xpBc4pizrjkJNsI0LF6eVv7sTux1D/I9MSHkv5qoYDVGr/xD97cxNB0dJ+BnLt63/Z94z8OWIEDJaWNMXrY8kmAV0n3VAMazlFF2euFq+iGMoCrbHkkqLdJd9v7w7Nf6T9A8Tq272pOasYUBT/dQSiTem9GywwMlBQhzuHKFDGMi4nW1i7uJRNHJBGtA4gUL0ixlh6LTYhGJrBL+ZTiWmh3Xf0v505yCdt6/e44xGbjYQ9o9ZWgjCSfP12h58sfHrlxA/MFNcAQgbIXQyr8YlNhuJUYIdWFtCvFFZcFM3XwRzk7Oh/OYaf51OwUrj8YlAUqd+zgvJQ/IvbqcqRf5Tdqi4GQrUsQaaC51wLbrglNMnCOgOM87JsXY1QN1ypbEPCdMFFwdzUlYRVsAs+LCqNuaUjCk62nv1mH1Oz9Lzi1/NZQYsISdXtdEA6/RZsaz4ZV3NZWYsjkM++owUcE7k2ss5b4TEVFX5PdlA4SJMcwqWhLPS0tFqZXXLaQG7w2bZElJjveDrJJbRDdEoNaxOyKMdXHXesVqix2CfUq+TbYbDZc3o2hhoeUHfNyTS3maVPIuqnIMX9NWbCYjhK8YEWcrmoHtA9h1s1CtbfsVDD5ZwpBjvQK4zWFEJKSgUc9QfSr2mGBZR4pti6MCerXHJh2BXasxygKXhYrcj6e6ashjMVP9PwY2clmazq2LUFaLptB3VpjIurKBzh8LL+RDYZj8aom1sW9WQY+RIeeZ820X95jSmTZT5imEK+kpcdL7Z1Ug3ba6uW5ajOgM="}
+```
+
+## 预设
+
+### [国际] All Things Ending 的分身诱导 AOE 与投影白名单
+
+```
+~Lv2~{"Name":"分身诱导","Group":"绝妖星乱舞","ZoneLockH":[1363],"ElementsL":[{"Name":"凯夫卡读条","type":1,"radius":5.5,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorNPCNameID":7131,"refActorRequireCast":true,"refActorCastId":[47826,47827],"refActorUseCastTime":true,"refActorCastTimeMin":3.0,"refActorCastTimeMax":8.0,"refActorComparisonType":6,"Conditional":true,"Nodraw":true},{"Name":"AOE 1","type":1,"radius":5.0,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorModelID":4967,"TargetAlteration":1100,"refActorComparisonType":1,"onlyVisible":true,"LimitDistance":true,"DistanceSourceX":100.0,"DistanceSourceY":100.0,"DistanceMax":9.0,"IsDead":false},{"Name":"AOE 2","type":1,"radius":5.0,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorModelID":4967,"TargetAlteration":1101,"refActorComparisonType":1,"onlyVisible":true,"LimitDistance":true,"DistanceSourceX":100.0,"DistanceSourceY":100.0,"DistanceMax":9.0,"IsDead":false},{"Name":"AOE 3","type":1,"radius":5.0,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorModelID":4967,"TargetAlteration":1102,"refActorComparisonType":1,"onlyVisible":true,"LimitDistance":true,"DistanceSourceX":100.0,"DistanceSourceY":100.0,"DistanceMax":9.0,"IsDead":false},{"Name":"AOE 4","type":1,"radius":5.0,"Donut":0.1,"color":3370385663,"fillIntensity":0.4,"refActorModelID":4967,"TargetAlteration":1103,"refActorComparisonType":1,"onlyVisible":true,"LimitDistance":true,"DistanceSourceX":100.0,"DistanceSourceY":100.0,"DistanceMax":9.0}],"ForcedProjectorActions":[47836,47837]}
+```
+
+### [国际] 破坏之翼（左或右）
+
+```
+~Lv2~{"Name":"破坏之翼","Group":"绝妖星乱舞 P2","ZoneLockH":[1363],"ElementsL":[{"Name":"左侧","type":4,"radius":20.0,"coneAngleMin":180,"coneAngleMax":360,"refActorDataID":19506,"refActorRequireCast":true,"refActorCastId":[47821],"refActorComparisonType":3,"includeRotation":true},{"Name":"右侧","type":4,"radius":20.0,"coneAngleMax":180,"refActorDataID":19506,"refActorRequireCast":true,"refActorCastId":[47822],"refActorComparisonType":3,"includeRotation":true}]}
+```
